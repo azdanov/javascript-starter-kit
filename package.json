@@ -1,0 +1,9 @@
+{
+    "name": "javascript-starter-kit",
+    "version": "1.0.0",
+    "description": "javascript starter kit",
+    "main": "index.js",
+    "author": "Anton Zdanov <azdanov@protonmail.com>",
+    "license": "MIT",
+    "private": true
+}
