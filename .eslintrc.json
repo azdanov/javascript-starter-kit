@@ -27,6 +27,7 @@
     ],
     "no-plusplus": "off",
     "unicorn/filename-case": "off",
-    "node/no-unpublished-require": "off"
+    "node/no-unpublished-require": "off",
+    "node/no-unsupported-features": "off"
   }
 }

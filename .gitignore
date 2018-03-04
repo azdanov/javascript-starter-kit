@@ -58,9 +58,6 @@ $RECYCLE.BIN/
 out
 gen### Vagrant template
 .vagrant/
-.idea
-*.iml
-out
 gen### JetBrains template
 .idea/**/workspace.xml
 .idea/**/tasks.xml
@@ -86,4 +83,3 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
-.idea/

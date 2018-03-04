@@ -1,5 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies,no-console */
+/* eslint-disable import/no-extraneous-dependencies,no-console,node/no-unsupported-features */
 
-const chalk = require('chalk');
+import chalk from 'chalk';
 
 console.log(chalk.green('Starting app in dev mode'));
