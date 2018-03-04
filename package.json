@@ -23,7 +23,7 @@
     "localtunnel": "lt --port 3000",
     "open:src": "babel-node buildScripts/srcServer.js",
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel security-check open:src",
+    "start": "npm-run-all --parallel security-check open:src lint:watch",
     "share": "npm-run-all --parallel open:src localtunnel",
     "clean": "rimraf dist",
     "predev": "yarn clean",
@@ -31,7 +31,9 @@
     "watch": "webpack --watch --mode development",
     "prebuild": "yarn clean",
     "build": "webpack --mode production",
-    "serve": "webpack-dev-server --mode development --open"
+    "serve": "webpack-dev-server --mode development --open",
+    "lint": "esw webpack.config.* src buildScripts --color",
+    "lint:watch": "yarn lint --watch"
   },
   "dependencies": {
     "whatwg-fetch": "2.0.3"
@@ -58,7 +60,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-unicorn": "^4.0.2",
-    "eslint-watch": "3.1.3",
+    "eslint-watch": "^3.1.3",
     "express": "4.16.2",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-loader": "^0.5.5",
