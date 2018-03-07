@@ -18,6 +18,7 @@
     "> 1%",
     "last 2 versions"
   ],
+  "jest": {},
   "scripts": {
     "security-check": "nsp check",
     "localtunnel": "lt --port 3000",
@@ -33,7 +34,9 @@
     "build": "webpack --mode production",
     "serve": "webpack-dev-server --mode development --open",
     "lint": "esw webpack.config.* src buildScripts --color",
-    "lint:watch": "yarn lint --watch"
+    "lint:watch": "yarn lint --watch",
+    "test": "jest",
+    "test:watch": "yarn test --watch"
   },
   "dependencies": {
     "whatwg-fetch": "2.0.3"
@@ -44,6 +47,8 @@
     "@babel/node": "^7.0.0-beta.40",
     "@babel/preset-env": "7.0.0-beta.40",
     "@babel/register": "7.0.0-beta.40",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.4.1",
     "babel-loader": "^8.0.0-beta.0",
     "chalk": "2.3.2",
     "cheerio": "1.0.0-rc.2",
