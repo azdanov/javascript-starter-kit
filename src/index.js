@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies,no-console */
 
-import { getUsers } from './api/userApi';
+import { getUsers, deleteUser } from './api/userApi';
 
 import './index.scss';
 
@@ -15,6 +15,21 @@ getUsers()
         }</td><td>${user.lastName}</td><td>${user.email}</td></tr>`,
       '',
     );
+
+    const deleteLinks = global.document.getElementsByClassName('deleteUser');
+
+    [...deleteLinks].forEach(link =>
+      link.addEventListener('click', event => {
+        event.preventDefault();
+
+        const a = event.target;
+        deleteUser(a.attributes['data-id'].value);
+
+        const tr = a.parentNode.parentNode;
+        tr.parentNode.removeChild(tr);
+      }),
+    );
+
     return true;
   })
   .catch(err => {
