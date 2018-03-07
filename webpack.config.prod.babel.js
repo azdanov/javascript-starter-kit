@@ -1,11 +1,14 @@
-import path from 'path';
-import HtmlWebPackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import HtmlWebPackPlugin from 'html-webpack-plugin';
+import path from 'path';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
+import webpack from 'webpack';
 import SriPlugin from 'webpack-subresource-integrity';
 
 module.exports = {
-  entry: [path.resolve(__dirname, 'src', 'index.js')],
+  entry: {
+    main: path.resolve(__dirname, 'src', 'index.js'),
+  },
   output: {
     filename: 'bundle.[hash].js',
     publicPath: '/',
@@ -83,5 +86,8 @@ module.exports = {
       },
     }),
     new ExtractTextPlugin('bundle.[hash].css'),
+    new webpack.DefinePlugin({
+      PRODUCTION: true,
+    }),
   ],
 };

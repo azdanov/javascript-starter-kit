@@ -1,5 +1,6 @@
 import path from 'path';
 import HtmlWebPackPlugin from 'html-webpack-plugin';
+import webpack from 'webpack';
 
 module.exports = {
   entry: [path.resolve(__dirname, 'src', 'index.js')],
@@ -55,6 +56,9 @@ module.exports = {
       template: path.resolve(__dirname, 'src', 'index.html'),
       filename: 'index.html',
       minify: false,
+    }),
+    new webpack.DefinePlugin({
+      PRODUCTION: false,
     }),
   ],
 };
