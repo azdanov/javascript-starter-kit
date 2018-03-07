@@ -1,6 +1,5 @@
 import path from 'path';
 import HtmlWebPackPlugin from 'html-webpack-plugin';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 module.exports = {
   entry: [path.resolve(__dirname, 'src', 'index.js')],
@@ -25,23 +24,29 @@ module.exports = {
         use: [
           {
             loader: 'html-loader',
-            options: { minimize: true },
+            options: { minimize: false },
           },
         ],
       },
       {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader',
-        }),
-      },
-      {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
-        }),
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
       },
     ],
   },
@@ -49,7 +54,7 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
       filename: 'index.html',
+      minify: false,
     }),
-    new ExtractTextPlugin('[name].css'),
   ],
 };

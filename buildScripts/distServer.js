@@ -3,20 +3,16 @@
 import express from 'express';
 import open from 'open';
 import path from 'path';
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import config from '../webpack.config.dev.babel';
+import compression from 'compression';
 
 const port = 3000;
 const app = express();
-const compiler = webpack({ ...config, mode: 'development' });
 
-app.use(
-  webpackDevMiddleware(compiler, { publicPath: config.output.publicPath }),
-);
+app.use(compression());
+app.use(express.static('dist'));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'src', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
 });
 
 app.get('/users', (req, res) => {

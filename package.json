@@ -12,7 +12,8 @@
   "babel": {
     "presets": [
       "@babel/preset-env"
-    ]
+    ],
+    "plugins": ["@babel/plugin-proposal-object-rest-spread"]
   },
   "browserslist": [
     "> 1%",
@@ -21,25 +22,26 @@
   "jest": {},
   "scripts": {
     "security-check": "nsp check",
-    "localtunnel": "lt --port 3000",
     "open:src": "babel-node buildScripts/srcServer.js",
-    "prestart": "babel-node buildScripts/startMessage.js",
     "generate-mock-data": "babel-node buildScripts/generateMockData.js",
     "prestart-mockapi": "yarn generate-mock-data",
     "start-mockapi": "json-server --watch src/api/db.json --port 3001",
+    "prestart": "babel-node buildScripts/startMessage.js",
     "start": "npm-run-all --parallel security-check open:src lint:watch",
+    "localtunnel": "lt --port 3000",
     "share": "npm-run-all --parallel open:src localtunnel",
-    "clean": "rimraf dist",
     "predev": "yarn clean",
-    "dev": "webpack --mode development",
-    "watch": "webpack --watch --mode development",
-    "prebuild": "yarn clean",
-    "build": "webpack --mode production",
+    "dev": "webpack --mode development --config webpack.config.dev.babel.js",
+    "watch": "yarn run dev --watch",
     "serve": "webpack-dev-server --mode development --open",
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch": "yarn lint --watch",
     "test": "jest",
-    "test:watch": "yarn test --watch"
+    "test:watch": "yarn test --watch",
+    "clean:dist": "rimraf dist",
+    "prebuild": "npm-run-all clean:dist test lint",
+    "build": "babel-node buildScripts/build.js",
+    "postbuild": "babel-node buildScripts/distServer.js"
   },
   "dependencies": {
     "whatwg-fetch": "2.0.3"
@@ -89,10 +91,12 @@
     "rimraf": "2.6.2",
     "sass-loader": "^6.0.7",
     "style-loader": "0.20.2",
-    "webpack": "4.1.0",
+    "uglifyjs-webpack-plugin": "latest",
+    "webpack": "4.1.1",
     "webpack-cli": "^2.0.10",
-    "webpack-dev-middleware": "3.0.0",
+    "webpack-dev-middleware": "3.0.1",
     "webpack-hot-middleware": "2.21.2",
-    "webpack-md5-hash": "0.0.6"
+    "webpack-md5-hash": "0.0.6",
+    "webpack-subresource-integrity": "^1.1.0-rc.2"
   }
 }

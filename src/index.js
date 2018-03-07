@@ -1,14 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies,no-console */
 
-import { getUsers, deleteUser } from './api/userApi';
+import { deleteUser, getUsers } from './api/userApi';
 
 import './index.scss';
 
 getUsers()
   .then(users => {
     global.document.getElementById('users').innerHTML = users.reduce(
-      (accumulator, user) =>
-        `${accumulator}<tr><td><a href="#" data-id="${
+      (string, user) =>
+        `${string}<tr><td><a href="#" data-id="${
           user.id
         }" class="deleteUser">Delete</a></td><td>${user.id}</td><td>${
           user.firstName
