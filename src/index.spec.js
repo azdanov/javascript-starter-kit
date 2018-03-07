@@ -22,7 +22,7 @@ describe('index.html', () => {
     expect($('body').find('h1')).toHaveLength(1);
   });
 
-  it('should say hello', () => {
-    expect($('h1#title').text()).toBe('Hello!');
+  it('should say users', () => {
+    expect($('h1#title').text()).toBe('Users');
   });
 });
